@@ -1,0 +1,22 @@
+{% extends 'blog/app.html' %}
+{% block content%}
+    <div class="content-section">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">
+                    Successfully logged out!
+                </legend>
+            </fieldset>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Want to again login? 
+                <a class="ml-2" href="{% url 'login' %}">
+                    Login
+                </a>
+            </small>
+        </div>
+    </div>
+
+
+  
+{% endblock content %}
