@@ -6,10 +6,10 @@
         <div class="card-body">
             <h5 class="card-title">profile info</h5>
             <p class="card-text">Hello! {{user.username}}</p>
-            <a href="#" class="btn btn-primary">📧 {{user.email}}</a>
+            <a href="mailto:{{user.email}}" class="btn btn-primary">📧 {{user.email}}</a>
         </div>
         <div class="container content-section">
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <fieldset class="form-group">
                     <legend class="border-bottom mb-4">
