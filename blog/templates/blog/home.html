@@ -5,7 +5,10 @@
 
   <br>
     <div class="alert alert-primary"  role="alert">
-      <span class="speech_content-{{post.id}}" style="font-size:60px">{{post.title}}</span> 
+      <p><img src="{{post.author.profile.image.url}}" class="card-img-top rounded-circle account-img"style="height:50px;width:50px" alt="profile image">
+         {{post.author}} posted-
+      </p>
+      <span class="speech_content-{{post.id}}" style="font-size:30px">{{post.title}}</span> 
       <sm>created at {{post.created_at|date:"F d,Y"}}<sm>
       <button type="button" onclick="textToSpeech({{post.id}})" class="btn btn-info btn-sm">Hear the post 🔊</button>
     </div>
