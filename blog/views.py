@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.paginator import Paginator
 from django.views.generic import (
     ListView, 
     DetailView,
@@ -7,7 +8,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
     )
-from .models import BlogPost
+from .models import BlogPost, User
 # Create your views here.
 posts = [
             {
@@ -32,7 +33,19 @@ class PostListView(ListView):
     model = BlogPost
     template_name = 'blog/home.html'
     context_object_name = 'posts'
+    paginate_by = 3
     ordering = ['-created_at']
+
+class UserPostListView(ListView):
+    model = BlogPost
+    template_name = 'blog/user_posts.html'
+    context_object_name = 'posts'
+    paginate_by = 3
+    ordering = ['-created_at']
+    def get_queryset(self):
+        user = get_object_or_404(User, username= self.kwargs.get('username'))
+        return BlogPost.objects.filter(author= user).order_by('-created_at')
+    
 
 class PostDetailView(DetailView):
     model = BlogPost
