@@ -14,6 +14,12 @@
             {{post.title}}
          </a> 
          <a href="{% url 'user-posts' post.author %}" style="font-size:14px"> - Posted by {{post.author}} </a>
+         {% if post.author == user %}
+          <span style="float: right">
+            <a href="{% url 'post-update' post.id %}" class="btn btn-outline-secondary btn-sm">✏️</a>
+            <a href="{% url 'post-delete' post.id %}" class="btn btn-outline-danger btn-sm">🗑️</a>
+          </span>
+        {% endif %}
          <p class="speech_content-{{post.id}}" style="font-weight: lighter;">
             {{post.content}}
          </p>
