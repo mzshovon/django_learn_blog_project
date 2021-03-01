@@ -1,12 +1,20 @@
 {% extends 'blog/app.html' %}
 {% block content%}
+{% load humanize %}
   <br>
     <div class="alert alert-primary"  role="alert">
-        <p><img src="{{object.author.profile.image.url}}" class="card-img-top rounded-circle account-img"style="height:50px;width:50px" alt="profile image">
-            {{object.author}} posted-
+        <p>
+            <img src="{{object.author.profile.image.url}}" class="card-img-top rounded-circle account-img"style="height:50px;width:50px" alt="profile image">
+                {{object.author}} 
+                    <span class="badge badge-secondary"> 
+                        {{object.created_at|naturaltime}}
+                    </span>
+        </p>
+        <p class="speech_content-{{object.id}}">
+            {{object.content}}
         </p>
         <span class="speech_content-{{object.id}}" style="font-size:30px">{{object.title}}</span> 
-        <sm>created at {{object.created_at|date:"F d,Y"}}<sm>
+        <!-- <span class="badge badge-secondary">creation date: {{object.created_at|date:"F d,Y"}}</span> -->
         <button type="button" onclick="textToSpeech({{object.id}})" class="btn btn-info btn-sm">Listen 🔊</button>
         {% if object.author == user %}        
             <a href="{% url 'post-update' object.id %}" class="btn btn-outline-secondary btn-sm">Edit ✏️</a>

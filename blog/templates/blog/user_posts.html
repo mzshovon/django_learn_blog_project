@@ -1,18 +1,36 @@
 {% extends 'blog/app.html' %}
 {% block content%}
+{% load humanize %}
 
   <h1>Posted by - {{view.kwargs.username}} || Total Post- {{page_obj.paginator.count}}</h1>
   {% for post in posts%}
 
-  <br>
+   <br>
     <div class="alert alert-primary"  role="alert">
       <p><img src="{{post.author.profile.image.url}}" class="card-img-top rounded-circle account-img"style="height:50px;width:50px" alt="profile image">
-         <a href="{% url 'user-posts' post.author %}"> Author name: {{post.author}} <a>
+         <a href="{% url 'post-detail' post.id %}" 
+          style="font-size:25px;
+          text-decoration:none;
+          color:black;font-weight: 600;">
+            {{post.title}}
+         </a> 
+         <a href="{% url 'user-posts' post.author %}" style="font-size:14px"> - Author Name: {{post.author}} </a>
+          {% if post.author == user %}
+            <span style="float: right">
+              <a href="{% url 'post-update' post.id %}" class="btn btn-outline-secondary btn-sm">✏️</a>
+              <a href="{% url 'post-delete' post.id %}" class="btn btn-outline-danger btn-sm">🗑️</a>
+            </span>
+          {% endif %}
+         <p class="speech_content-{{post.id}}" style="font-weight: lighter;">
+            {{post.content}}
+         </p>
       </p>
-      <a href="{% url 'post-detail' post.id %}" class="speech_content-{{post.id}}" style="font-size:30px">{{post.title}}</a> 
-      <sm>created at {{post.created_at|date:"F d,Y"}}<sm>
-      <button type="button" onclick="textToSpeech({{post.id}})" class="btn btn-info btn-sm">Listen 🔊</button>
     </div>
+  <div class="alert alert-warning"  role="alert">
+      <sm>Posted {{ post.created_at|naturaltime}}<sm>
+      <button type="button" onclick="textToSpeech({{post.id}})" class="btn btn-info btn-sm">Listen 🔊</button>
+  </div>
+  <hr>
 
   {% endfor %}
 

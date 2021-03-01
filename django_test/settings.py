@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize'
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,9 @@ MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK='Bootstrap4'
 LOGIN_REDIRECT_URL = 'profile'
+
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'xxxxxxxxxxxx'
+EMAIL_HOST_PASSWORD = 'xxxxxxxxxxxxx'
+EMAIL_USE_TLS = True
