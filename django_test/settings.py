@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
+    'bootstrap4',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +134,5 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'xxxxxxxxxxxx'
 EMAIL_HOST_PASSWORD = 'xxxxxxxxxxxxx'
 EMAIL_USE_TLS = True
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
