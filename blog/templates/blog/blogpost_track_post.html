@@ -1,0 +1,47 @@
+{% extends 'blog/app.html' %}
+{% load static %}
+{% block content %}
+{% load humanize %}
+
+  <br>
+  <strong>
+    <h1 style="text-align:center">
+        Track your all post
+    </h1>
+  </strong>
+    <div class="card" style="margin:0 auto;width:79rem">
+        <div id="github_chart_1"></div>
+    </div>
+
+{% endblock content %}
+{% block 'page_scripts' %}
+ <script src="{% static 'js/track_git.js' %}"></script>  
+ <script type="text/javascript">
+    //Generate random number between min and max
+      function randomInt(min,max)
+      {
+        return Math.floor(Math.random()*(max-min+1)+min);
+      }
+    function getRandomTimeStamps( min, max ){
+      var return_list = [];
+
+      var entries =  randomInt( min, max );
+      for ( var i =0; i < entries; i++ ){
+        var day = new Date();
+        //Genrate random
+        var previous_date = randomInt(0,365);
+        day.setDate( day.getDate() - previous_date );
+        return_list.push( day.getTime() );
+      }
+      return return_list;
+    }
+    console.log(getRandomTimeStamps(0,5));
+    $(document).ready(function(){
+        $('#github_chart_1').github_graph( {
+          data: getRandomTimeStamps(50,500) ,
+          texts: ['given post','given posts']
+        });
+    });
+  </script>
+{% endblock 'page_scripts' %}
+
