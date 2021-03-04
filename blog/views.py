@@ -80,3 +80,6 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+def post_track_list(request):
+    return render(request, 'blog/blogpost_track_post.html')
