@@ -1,7 +1,8 @@
 {% extends 'blog/app.html' %}
+{% load crispy_forms_tags %}
 {% block content%}
     <div class="content-section">
-    <div class="card " style="width: 28rem;margin-top: 20px;">
+    <div class="card " style="width: 38rem;top: 20px;margin: 0 auto;">
         <img src="{{user.profile.image.url}}" class="card-img-top rounded-circle account-img" alt="profile image">
         <div class="card-body">
             <h5 class="card-title">profile info</h5>
@@ -10,21 +11,23 @@
             <a href="{% url 'post-create' %}" class="btn btn-outline-success">➕ Create new post</a>
         </div>
         <div class="container content-section">
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">
-                        Update Profile
-                    </legend>
-                    {{u_form.as_p}}
-                    {{p_form.as_p}}
-                </fieldset>
-                <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">
-                        Update
-                    </button>
-                </div>
-            </form> 
+            <div class="card container">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">
+                            Update Profile
+                        </legend>
+                        {{u_form | crispy}}
+                        {{p_form | crispy}}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-outline-info" type="submit">
+                            Update
+                        </button>
+                    </div>
+                </form>
+            </div> 
         </div>
     </div>
 {% endblock content %}

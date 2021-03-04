@@ -28,7 +28,8 @@
     </div>
   <div class="alert alert-warning"  role="alert">
       <sm>Posted {{ post.created_at|naturaltime}}<sm>
-      <button type="button" onclick="textToSpeech({{post.id}})" class="btn btn-info btn-sm">Listen 🔊</button>
+      <button type="button" onclick="textToSpeechMale({{post.id}})" class="btn btn-info btn-sm">👨 🔊</button>
+      <button type="button" onclick="textToSpeechFemale({{post.id}})" class="btn btn-primary btn-sm">👩 🔊</button>
   </div>
   <hr>
 

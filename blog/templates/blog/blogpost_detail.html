@@ -10,12 +10,13 @@
                         {{object.created_at|naturaltime}}
                     </span>
         </p>
+        <span class="speech_content-{{object.id}}" style="font-size:30px">{{object.title}}</span> 
         <p class="speech_content-{{object.id}}">
             {{object.content}}
         </p>
-        <span class="speech_content-{{object.id}}" style="font-size:30px">{{object.title}}</span> 
         <!-- <span class="badge badge-secondary">creation date: {{object.created_at|date:"F d,Y"}}</span> -->
-        <button type="button" onclick="textToSpeech({{object.id}})" class="btn btn-info btn-sm">Listen 🔊</button>
+        <button type="button" onclick="textToSpeechMale({{post.id}})" class="btn btn-info btn-sm">👨 🔊</button>
+        <button type="button" onclick="textToSpeechFemale({{post.id}})" class="btn btn-primary btn-sm">👩 🔊</button>
         {% if object.author == user %}        
             <a href="{% url 'post-update' object.id %}" class="btn btn-outline-secondary btn-sm">Edit ✏️</a>
             <a href="{% url 'post-delete' object.id %}" class="btn btn-outline-danger btn-sm">Delete 🗑️</a>
