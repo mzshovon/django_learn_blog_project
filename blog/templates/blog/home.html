@@ -20,6 +20,15 @@
             <a href="{% url 'post-delete' post.id %}" class="btn btn-outline-danger btn-sm">🗑️</a>
           </span>
         {% endif %}
+        <div class="tag">
+          <span style="font-weight:bold">
+            Tags: 
+          </span> 
+          <span class="badge badge-warning badge-sm">
+           {{post.tags}}
+          </span>
+        </div>
+        <br>
          <p class="speech_content-{{post.id}}" style="font-weight: lighter;">
             {{post.content}}
          </p>

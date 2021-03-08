@@ -52,14 +52,14 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = BlogPost
-    fields = ['title','content','post_image']
+    fields = ['title','content','post_image','tags']
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = BlogPost
-    fields = ['title','content','post_image']
+    fields = ['title','content','post_image','tags']
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
